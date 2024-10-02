@@ -1,34 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import './ConnectWallet.css'
+import React, { useEffect, useState } from "react";
+import "./ConnectWallet.css";
 
 const WalletConnect = () => {
-  const [walletAddress, setWalletAddress] = useState('');
-  const [error, setError] = useState('');
+  const [walletAddress, setWalletAddress] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    if(typeof window.ethereum !== 'undefined'){
-      console.log('MetaMask is installed')
-    }else {
-      setError('MetaMask is not installed')
+    if (typeof window.ethereum !== "undefined") {
+      console.log("MetaMask is installed");
+    } else {
+      setError("MetaMask is not installed");
     }
-  }, [])
+  }, []);
 
   const connectWallet = async () => {
-    if (typeof window.ethereum !== 'undefined') {
+    if (typeof window.ethereum !== "undefined") {
       try {
-        // const provider = new BrowserProvider(window.ethereum);
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
         setWalletAddress(accounts[0]);
       } catch (err) {
-        setError('User denied account connection or another issue occurred.');
+        setError("User denied account connection or another issue occurred.");
       }
     } else {
-      setError('MetaMask is not installed.');
+      setError("MetaMask is not installed.");
     }
   };
 
   return (
-    <div className='connect-wallet'>
+    <div className="connect-wallet">
       <h2>Connect Your Wallet</h2>
       <button onClick={connectWallet}>Connect Wallet</button>
       {walletAddress && <p>Connected Wallet: {walletAddress}</p>}
@@ -38,7 +39,6 @@ const WalletConnect = () => {
 };
 
 export default WalletConnect;
-
 
 // import React, { useState, useEffect } from "react";
 // import { ethers } from "ethers";
