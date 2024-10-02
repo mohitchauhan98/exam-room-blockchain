@@ -1,0 +1,13 @@
+.mint-nft-wallet{
+    display: grid;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.nft-input{
+    width: 250px;
+    height: 30px;
+    outline: none;
+}
